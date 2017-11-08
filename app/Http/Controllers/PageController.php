@@ -60,17 +60,13 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($page,$other_pages = null)
+    public function show($page)
     {
-        if($other_pages) 
-        {
-            $other_pages = explode('/', $other_pages);
 
-        }
-	$page = $this->pageService->getPage($page,$other_pages);
-	return \Cache::remember('test.' . $page->slug, 120, function() use ($page){			
-		return view('test.test', ['page' => $page])->render();
-	});
+		$page = $this->pageService->getPage($page);
+		return \Cache::remember('test.' . $page->slug, 120, function() use ($page){			
+			return view('test.test', ['page' => $page])->render();
+		});
 
     }
 
