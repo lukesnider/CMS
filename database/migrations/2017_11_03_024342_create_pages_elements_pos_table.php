@@ -15,6 +15,8 @@ class CreatePagesElementsPosTable extends Migration
     {
         Schema::create('pages_elements_pos', function (Blueprint $table) {
             $table->increments('id');
+			$table->integer('position');
+			$table->integer('element_id');
             $table->timestamps();
         });
     }

@@ -8,8 +8,8 @@
                 <div class="panel-heading">{{$page->title}}</div>
 
                 <div class="panel-body">
-			<p>{{$page->slug}}</p>
-			<p>{{$page->body}}</p>
+					<p>{{$page->slug}}</p>
+					<p>{{$page->body}}</p>
                 </div>
             </div>
         </div>
