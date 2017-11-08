@@ -68,7 +68,7 @@ Route::middleware('web')->group(function () {
 
 	Route::get('/', 'PageController@index')->name('pages.index');
 
-	Route::any('{slug}/{other_pages?}','PageController@show')->name('pages.show')->where('other_pages', '(.*)');
+	Route::any('{slug?}','PageController@show')->name('pages.show')->where('slug', '(.*)');
 	
 
 });
