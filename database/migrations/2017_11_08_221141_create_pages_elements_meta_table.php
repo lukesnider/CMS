@@ -18,6 +18,8 @@ class CreatePagesElementsMetaTable extends Migration
 		$table->integer('element_id');
 		$table->string('background_color');
 		$table->string('color');
+		$table->string('border');
+		$table->string('border_color');
 		$table->text('content');
             $table->timestamps();
         });

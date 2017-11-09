@@ -8,12 +8,13 @@ class PagesElement extends Model
 {
      protected $table = 'pages_elements';
 
-    public function position()
-    {
-        return $this->hasOne('App\Models\pages_elements_pos', 'element_id');
-    }
+    // public function position()
+    // {
+        // return $this->hasOne('App\Models\pages_elements_pos', 'element_id');
+    // }
+	
     public function metaData()
     {
-        return $this->hasOne('App\Models\pages_elements_meta', 'element_id');
-    }
+        return $this->hasOne('App\Models\PagesElementsMeta', 'element_id');
+    }    
 }
