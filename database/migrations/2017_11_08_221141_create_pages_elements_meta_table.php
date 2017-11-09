@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagesElementsPosTable extends Migration
+class CreatePagesElementsMetaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreatePagesElementsPosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages_elements_pos', function (Blueprint $table) {
+        Schema::create('pages_elements_meta', function (Blueprint $table) {
             $table->increments('id');
-			$table->integer('position');
-			$table->integer('element_id');
+		$table->integer('element_id');
+		$table->string('background_color');
+		$table->string('color');
+		$table->string('border');
+		$table->string('border_color');
+		$table->text('content');
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ class CreatePagesElementsPosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages_elements_pos');
+        Schema::dropIfExists('pages_elements_meta');
     }
 }
