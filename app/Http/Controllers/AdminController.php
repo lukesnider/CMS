@@ -3,22 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use App\Services\PageService;
-use App\Models\Page;
+use App\Services\AdminService;
 
-class PageController extends Controller
+
+class AdminController extends Controller
 {
+	
+    private $adminService;
 
-    private $pageService;
 
-
-    public function __construct(PageService $pageService)
+    public function __construct(AdminService $adminService)
     {
-		$this->pageService = $pageService;
+		$this->adminService = $adminService;
     }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -26,15 +23,39 @@ class PageController extends Controller
      */
     public function index()
     {
-	$page = Page::where('index',1)->first();
-	
-	return view('test.test', ['page' => $page]);
-	// return \Cache::remember('test.' . $page->slug, 120, function() use ($page){			
-		// return view('test.test', ['page' => $page])->render();
-	// });
-
+		
+        return view('admin.index');
     }
-
+	
+	
+	public function pages()
+	{
+		$data = $this->adminService->pages();
+		
+		return view('admin.pages')->with($data);
+	}	
+	
+	public function page($id)
+	{
+		$data = $this->adminService->page($id);
+		
+		return view('admin.page')->with($data);
+	}	
+	
+	public function pageEdit(Request $request)
+	{
+		$data = $this->adminService->pageEdit($request);
+		
+		return view('admin.page')->with($data);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
     /**
      * Show the form for creating a new resource.
      *
@@ -62,15 +83,9 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($page)
+    public function show($id)
     {
-
-		$page = $this->pageService->getPage($page);
-		return view('test.test', ['page' => $page]);
-		// return \Cache::remember('test.' . $page->slug, 120, function() use ($page){			
-			// return view('test.test', ['page' => $page])->render();
-		// });
-
+        //
     }
 
     /**

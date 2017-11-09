@@ -11,8 +11,19 @@ class PageService {
 		
 		$slug = '/' .$page;
 		
-		$page = Page::where('slug', $slug)->first();
-
+		$page = Page::where('slug', $slug)
+						->where('status', 1)
+						->first();
+		
+		
+		if(!$page)
+		{
+			$page = Page::where('index', 1)
+							->where('status', 1)
+							->first();
+		}
+		
+		
 		return $page;
 	}
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f2120fa77d42a42b4210cdbe1c114e2",
+    "content-hash": "5dd1c4fb0ea3b043ab5924e6597f005f",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -315,6 +315,41 @@
                 "trusted proxy"
             ],
             "time": "2017-06-15T17:19:42+00:00"
+        },
+        {
+            "name": "geedmo/yamm3",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/geedmo/yamm3.git",
+                "reference": "d604f9ad80b46f361f38d06eb9157dbbbb91229a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/geedmo/yamm3/zipball/d604f9ad80b46f361f38d06eb9157dbbbb91229a",
+                "reference": "d604f9ad80b46f361f38d06eb9157dbbbb91229a",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "German Morales",
+                    "email": "geedmo.ds@gmail.com",
+                    "homepage": "http://geedmo.com"
+                }
+            ],
+            "description": "Yet another megamenu for Bootstrap 3.x",
+            "homepage": "http://geedmo.github.io/yamm3/",
+            "keywords": [
+                "bootstrap",
+                "megadropdown",
+                "megamenu"
+            ],
+            "time": "2015-09-25T14:05:40+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -3830,7 +3865,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "geedmo/yamm3": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
