@@ -14,11 +14,11 @@ class CreatePagesElementsTable extends Migration
     public function up()
     {
         Schema::create('pages_elements', function (Blueprint $table) {
-            $table->increments('id');
+            		$table->increments('id');
 			$table->integer('type');
 			$table->integer('x_size');
 			$table->integer('y_size');
-            $table->timestamps();
+           	 	$table->timestamps();
         });
     }
 

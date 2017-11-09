@@ -11,7 +11,9 @@ class PageService {
 		
 		$slug = '/' .$page;
 		
-		return Page::where('slug', $slug)->first();
+		$page = Page::where('slug', $slug)->first();
+
+		return $page;
 	}
 
 

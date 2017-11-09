@@ -27,6 +27,9 @@ class PageController extends Controller
     public function index()
     {
 	$page = Page::where('index',1)->first();
+
+
+	
 	return \Cache::remember('test.' . $page->slug, 120, function() use ($page){			
 		return view('test.test', ['page' => $page])->render();
 	});
@@ -64,6 +67,7 @@ class PageController extends Controller
     {
 
 		$page = $this->pageService->getPage($page);
+		
 		return \Cache::remember('test.' . $page->slug, 120, function() use ($page){			
 			return view('test.test', ['page' => $page])->render();
 		});
