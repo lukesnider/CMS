@@ -18,6 +18,29 @@ class PageService {
 		
 		return $page;
 	}
+	
+	
+	public function  getIndexPage()
+	{
+		$index = Configuration::getIndex();
+		
+		$page	=	Page::find($index);
+		
+		if(!$page || $page->status == 0)
+		{
+			$page = Page::where('slug', '/')
+							->where('status', 1)
+							->first();
+			if(!$page)
+			{
+				$page = Page::where('status', 1)
+								->first();
+			}
+		}
+		
+		return $page;
 
+		
+	}
 
 }

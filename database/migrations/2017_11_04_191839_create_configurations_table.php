@@ -15,7 +15,8 @@ class CreateConfigurationsTable extends Migration
     {
         Schema::create('configurations', function (Blueprint $table) {
             $table->increments('id');
-	    $table->string('theme_path')->default('resources/views');
+			$table->string('config');
+			$table->string('value',255);
             $table->timestamps();
         });
     }

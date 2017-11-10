@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Services\PageService;
 use App\Models\Page;
+use App\Models\Configuration;
 
 class PageController extends Controller
 {
@@ -26,12 +27,12 @@ class PageController extends Controller
      */
     public function index()
     {
-	$page = Page::where('index',1)->first();
-	
-	return view('test.test', ['page' => $page]);
-	// return \Cache::remember('test.' . $page->slug, 120, function() use ($page){			
-		// return view('test.test', ['page' => $page])->render();
-	// });
+		$page	=	$this->pageService->getIndexPage();
+		
+		return view('test.test', ['page' => $page]);
+		// return \Cache::remember('test.' . $page->slug, 120, function() use ($page){			
+			// return view('test.test', ['page' => $page])->render();
+		// });
 
     }
 
@@ -67,7 +68,7 @@ class PageController extends Controller
 		
 		$page = $this->pageService->getPage($page);
 
-		if(!$page)
+		if(!$page || $page->isIndex())
 		{
 			return redirect()->route('pages.index');
 		}

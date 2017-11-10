@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\Page;
 use App\Models\PagesElements;
 use App\Models\PagesElementsMeta;
+use App\Models\Configuration;
 
 class AdminService {
 
@@ -11,10 +12,11 @@ class AdminService {
 	public function pages()
 	{
 		$pages	=	Page::all();
-		
+		$index	=	Configuration::getIndex();
 		
 		return [
-			'pages'	=>	$pages,
+			'pages'			=>	$pages,
+			'index_page'	=>	$index,
 		];
 	}	
 	
@@ -39,6 +41,11 @@ class AdminService {
 		if($request->has('slug'))
 		{
 			$page->slug		=	$request->slug;
+		}
+		
+		if($request->has('index_page'))
+		{
+			Configuration::setIndex($page->id);
 		}
 		
 		$page->title	=	$request->title;

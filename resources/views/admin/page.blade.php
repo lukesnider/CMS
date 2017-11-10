@@ -37,11 +37,17 @@
 	$(document).ready(function(){
 
 	});
-
-	var $draggable = $('.draggable').draggabilly({
-		containment: '.draggabilly-container',
-		grid: [ 50, 50 ]
-	})
+	//function listener(/* parameters */) {
+	//  draggie = $(this).data('draggabilly');
+	//  console.log($(this).parent());
+	//  console.log( 'eventName happened', draggie.position.x, draggie.position.y );
+	//}
+	//var $draggable = $('.draggable').draggabilly({
+	//	containment: '.draggabilly-container',
+	//	grid: [ 50, 50 ]
+	//})
+    //
+	//$draggable.on( 'dragEnd', listener );
 
 
 </script>

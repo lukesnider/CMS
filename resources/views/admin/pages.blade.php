@@ -64,6 +64,11 @@
 								  <option value="1" @if($page->status == 1) selected="selected" @endif>Live</option>
 								</select>
 							</div>
+							  <div class="checkbox">
+								<label>
+								  <input type="checkbox" name="index_page" @if($page->id == $index_page) checked @endif> Set as static front page.
+								</label>
+							  </div>
 							<button type="submit" class="btn btn-default">Save</button>
 						</form>
 					</div>
