@@ -64,8 +64,13 @@ class PageController extends Controller
      */
     public function show($page)
     {
-
+		
 		$page = $this->pageService->getPage($page);
+
+		if(!$page)
+		{
+			return redirect()->route('pages.index');
+		}
 		return view('test.test', ['page' => $page]);
 		// return \Cache::remember('test.' . $page->slug, 120, function() use ($page){			
 			// return view('test.test', ['page' => $page])->render();

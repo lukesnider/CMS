@@ -6,30 +6,42 @@
 .grid-item--width2 { width: 50%; }
 </style>
 <div class="container">
-	<div class="row">
-		<div id="left" class="col-md-6">
-			<ul>
-				<li>test 1</li>
-				<li>test 2</li>
-				<li>test 3</li>
-			</ul>	
-		</div>	
-		<div id="right" class="col-md-6">
-			<ul>
-				<li>test 4</li>
-				<li>test 5</li>
-				<li>test 6</li>
-			</ul>	
+
+	<div class="draggabilly-container">
+	@foreach($page->elements->where('type',1)->sortBy('position') AS $row)
+		<div class="row" 
+			style="height:{{$row->y_size}}px; @if($row->metaData)  background-color:{{ $row->metaData->background_color }}; color:{{ $row->metaData->color }}; @endif ">
+			@if($row->metaData)
+				{{ $row->metaData->content }}
+			@endif			
+			@foreach($page->elements->where('type', 2)->where('parent_id', $row->id)->sortBy('position') AS $col)
+				<div class="col-md-{{ $col->x_size }} draggable"  @if($col->metaData) style="background-color:{{ $col->metaData->background_color }};color:{{ $col->metaData->color }};height:{{$col->y_size}}%;border:{{ $col->metaData->border }}" @endif>
+					@if($col->metaData)
+						{{ $col->metaData->content }}
+					@endif
+				</div>
+			
+			@endforeach
 		</div>
+	@endforeach
 	</div>
+	
 </div>
+
+
+
+
+
 @push('scripts-admin')
 <script type="text/javascript">
 	$(document).ready(function(){
 
 	});
 
-	dragula([document.querySelector('#left'), document.querySelector('#right')]);
+	var $draggable = $('.draggable').draggabilly({
+		containment: '.draggabilly-container',
+		grid: [ 50, 50 ]
+	})
 
 
 </script>

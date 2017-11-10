@@ -16,14 +16,6 @@ class PageService {
 						->first();
 		
 		
-		if(!$page)
-		{
-			$page = Page::where('index', 1)
-							->where('status', 1)
-							->first();
-		}
-		
-		
 		return $page;
 	}
 

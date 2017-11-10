@@ -35,7 +35,12 @@ class AdminService {
 		
 		$page	=	Page::find($request->page_id);
 		
-		$page->slug		=	$request->slug;
+		
+		if($request->has('slug'))
+		{
+			$page->slug		=	$request->slug;
+		}
+		
 		$page->title	=	$request->title;
 		$page->status	=	$request->status;
 		
