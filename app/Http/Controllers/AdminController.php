@@ -46,7 +46,7 @@ class AdminController extends Controller
 	{
 		$data = $this->adminService->pageEdit($request);
 		
-		return view('admin.page')->with($data);
+		return view('admin.pages')->with($data);
 	}
 	
 	

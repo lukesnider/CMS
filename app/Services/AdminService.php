@@ -41,8 +41,11 @@ class AdminService {
 		
 		$page->save();
 		
+
+		$pages	=	Page::all();
+
 		return [
-			'page'	=>	$page,
+			'pages'	=>	$pages,
 		];
 	}
 

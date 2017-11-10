@@ -9,14 +9,14 @@
 				<h3 class="panel-title">All Pages</h3>
 			  </div>
 			  <div class="panel-body">
-					<ul class="list-group">
+					<div class="list-group">
 						@foreach($pages AS $page)
-							<li class="list-group-item">
+							<button data-page-id="{{ $page->id }}" v-on:click="showPanel" class="list-group-item page-list-item" >
 								<div class="row">
 									<div class="col-md-10">
-										- <a href="{{ route('admin.page', ['id' => $page->id]) }}">{{ $page->title }}</a>
+										- <a class="design-view-link" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Design View" href="{{ route('admin.page', ['id' => $page->id]) }}">{{ $page->title }}</a>
 									</div>		
-									<div class="col-md-1" v-on:click="ok = true">
+									<div  class="col-md-1">
 										@if($page->status == 1)
 											<span  class="label label-success">Live</span>
 										@else
@@ -25,11 +25,11 @@
 										
 									</div>
 								</div>
-							</li>
+							</button>
 
 							
 						@endforeach
-					</ul>
+					</div>
 				</div>
 			</div>
 	
@@ -38,7 +38,7 @@
 		<div class="col-md-6">
 			@foreach($pages AS $page)
 
-				<div class="panel panel-default" style="display:none;">
+				<div class="panel panel-default" v-if="show_panel == {{ $page->id }}">
 					<div class="panel-heading">
 						<h3 class="panel-title">Page Info</h3>
 					</div>
@@ -48,8 +48,8 @@
 							<input class="hidden" name="page_id" value="{{ $page->id }}" />
 							<div class="form-group">
 								<label for="">Slug</label>
-								<p class="slug_p" >{{ $page->slug }}    <button id="edit_slug_button" type="button" class="btn btn-link"><h6><span class="label label-default">Edit</span></h6></button></p>
-								<input type="text" class="page_slug form-control"  style="display:none;" value="{{ $page->slug }}" name="slug">
+								<p v-if="show_slug != {{ $page->id }}" class="slug_p" >{{ $page->slug }}    <button data-page-id="{{ $page->id }}" v-on:click="showSlug" id="edit_slug_button" type="button" class="btn btn-link"><h6><span class="label label-default">Edit</span></h6></button></p>
+								<input v-if="show_slug == {{ $page->id }} " type="text" class="page_slug form-control"  value="{{ $page->slug }}" name="slug">
 							</div>
 							<div class="form-group">
 								<label for="">Title</label>
@@ -78,19 +78,30 @@
 @push('scripts-admin')
 <script type="text/javascript">
 	$(document).ready(function(){
+	    $(".design-view-link").hover(function(){
 		
-		$('#edit_slug_button').on('click',function(){
-			$('p.slug_p').hide();
-			$('input.page_slug').show();
-		});
-
+		$(this).popover('toggle');
+	    });
 	});
+
+
+
 	var pages = new Vue({
-        el: '#pages-display',
-        data: {
-            pages: []
-        }
-    })
+	  el: '#pages-display',
+	  data: {
+	    show_panel: 0,
+	    show_slug: 0
+	  },
+
+	  methods: {
+	    showPanel: function (event) {
+		this.show_panel = event.currentTarget.getAttribute('data-page-id');
+	    },
+	    showSlug: function (event) {
+	    	this.show_slug = event.currentTarget.getAttribute('data-page-id');
+            }
+	  }
+	})
 
 
 </script>

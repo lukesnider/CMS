@@ -3,7 +3,8 @@
 @section('content')
 <div class="container-fluid">
 	@foreach($page->elements->where('type',1)->sortBy('position') AS $row)
-		<div class="row" style="height:{{$row->y_size}}px; @if($row->metaData)  background-color:{{ $row->metaData->background_color }}; color:{{ $row->metaData->color }}; @endif ">
+		<div class="row" 
+			style="height:{{$row->y_size}}px; @if($row->metaData)  background-color:{{ $row->metaData->background_color }}; color:{{ $row->metaData->color }}; @endif ">
 			@if($row->metaData)
 				{{ $row->metaData->content }}
 			@endif			
