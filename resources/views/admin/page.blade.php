@@ -26,7 +26,7 @@
 	@endforeach
 	</div>
 
-	<template-row v-for="row in row_count"  :rownum="rows.state.count"></template-row>
+	<template-row v-for="row in rows.state.count"  :rownum="rows.state.count"></template-row>
 
 	<div class="row">
 		<div class="col-md-2 col-xs-offset-5">
@@ -84,7 +84,7 @@
 			counter: this.rownum
 	    	}
 	  },
-	  template: '<div :data-element-id="counter"  data-element-type="2" class="row new-element">ROW</div></div>'
+	  template: '<div :data-element-id="counter"  data-element-type="2" class="row new-element">ROW</div>'
 	})
 
 </script>
