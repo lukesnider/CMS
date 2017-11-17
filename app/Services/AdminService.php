@@ -32,7 +32,7 @@ class AdminService {
 	}	
 	
 	
-	public function pageEdit($request)
+	public function pagesEdit($request)
 	{		
 		
 		$page	=	Page::find($request->page_id);
@@ -59,6 +59,10 @@ class AdminService {
 		return [
 			'pages'	=>	$pages,
 		];
+	}
+	public function pageEdit($request)
+	{
+		dd($request);
 	}
 
 }

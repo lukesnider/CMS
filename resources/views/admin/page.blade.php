@@ -5,6 +5,8 @@
 .grid-item { width: 25%; }
 .grid-item--width2 { width: 50%; }
 </style>
+<form action="{{ route('admin.page.edit') }}" method="POST">
+{{ csrf_field() }}
 <div id="page-template" class="container">
 
 	<div  class="draggabilly-container">
@@ -33,8 +35,10 @@
 			<button v-on:click="addRow()" type="button" class="btn btn-default add_row_button">Add Row</button>
 		</div>
 	</div>
-	
+	<div class="row">
+		<button type="submit" class="btn btn-default">Save</button>
 </div>
+</form>
 
 @foreach($page->elements AS $element)
 	<input class="page-element hidden" data-element-id="{{ $element->id }}"  value=""/>
@@ -81,11 +85,29 @@
 	  props: ['rownum'],
 	  data: function () {
 	    	return {
-			counter: this.rownum
+			counter: this.rownum,
+			names: ['height','width'],
+			nameValues: {height: '100', width: '100'}
 	    	}
 	  },
-	  template: '<div :data-element-id="counter"  data-element-type="2" class="row new-element">ROW</div>'
+          methods: {
+		nameAttr: function(id,value) {
+			return "row["+ id +"]["+ value +"]"	
+		},
+		classAttr: function(value) {
+			return "element-"+value;	
+		}
+	  },
+	  template: '<div :data-element-id="counter"  data-element-type="1" class="row new-element">' +
+			'@{{names[0]}}' +
+		    '<div :id="counter" class="hidden">' +
+			'<input v-for="name in names" :name="nameAttr(counter,name)" value="100" :class="classAttr(name)" />' +
+		    '</div>' +
+		    '</div>'
 	})
+
+
+
 
 </script>
 @endpush

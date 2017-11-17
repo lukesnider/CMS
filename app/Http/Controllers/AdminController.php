@@ -42,13 +42,19 @@ class AdminController extends Controller
 		return view('admin.page')->with($data);
 	}	
 	
+	public function pagesEdit(Request $request)
+	{
+		$data = $this->adminService->pagesEdit($request);
+		
+		return redirect()->route('admin.pages')->with($data);
+	}
+
 	public function pageEdit(Request $request)
 	{
 		$data = $this->adminService->pageEdit($request);
 		
 		return redirect()->route('admin.pages')->with($data);
 	}
-	
 	
 	
 	

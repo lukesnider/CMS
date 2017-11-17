@@ -43,7 +43,7 @@
 						<h3 class="panel-title">Page Info</h3>
 					</div>
 					<div class="panel-body">
-						<form action="{{ route('admin.page.edit') }}" method="POST">
+						<form action="{{ route('admin.pages.edit') }}" method="POST">
 							{{ csrf_field() }}
 							<input class="hidden" name="page_id" value="{{ $page->id }}" />
 							<div class="form-group">
