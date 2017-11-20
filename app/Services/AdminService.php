@@ -62,7 +62,7 @@ class AdminService {
 	}
 	public function pageEdit($request)
 	{
-		dd($request);
+		dd($request->row);
 	}
 
 }
