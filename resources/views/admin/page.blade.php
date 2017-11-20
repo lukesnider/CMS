@@ -32,7 +32,7 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title" id="">Modal title</h4>
+			<h4 class="modal-title" id="">Edit Row</h4>
 		      </div>
 		      <div class="modal-body">
 			<div class="form-group">
@@ -53,38 +53,69 @@
 		</div>
 		@endforeach
 
-	<template-row v-for="row in rows.state.count"  :rownum="rows.state.count" inline-template>
+	<template-row v-for="row in rows.state.count"  :rownum="rows.state.count"  :rowid="rows.state.rowIds" inline-template>
 
-		<div  :data-element-id="counter"  data-element-type="1" class="row new-element" :style="rowStyle()"  >
+		<div  :data-element-id="elementId()"  data-element-type="1" class="row new-element" :style="rowStyle()"  >
 			@{{names[0]}}
-			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" :data-target="modalAttr(counter,false)">
+			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" :data-target="modalRowAttr(elementId(),false)">
   				Edit
+			</button>			
+			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" :data-target="modalAddColAttr(elementId(),false)">
+  				+
 			</button>
-			<div class="modal fade" :id="modalAttr(counter,  true)" tabindex="-1" role="dialog" :aria-labelledby="modalAttr(counter, true)">
+			
+			<!--Edit Row Modal -->
+			<div class="modal fade" :id="modalRowAttr(elementId(),  true)" tabindex="-1" role="dialog" :aria-labelledby="modalRowAttr(elementId(), true)">
 			 <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="">Modal title</h4>
+				<h4 class="modal-title" id="">Edit Row</h4>
 			      </div>
 			      <div class="modal-body">
 				<div class="form-group">
 			    		<label for="">Height:</label>
-			    		<input  :data-element-id="counter" :name="nameAttr(counter,'height')" type="text" class="form-control row-height" v-model="this.height">
+			    		<input  :data-element-id="elementId()" :name="nameAttr(elementId(),'height')" type="text" class="form-control row-height" v-model="this.height">
 			    		<label for="">Width:</label>
-			    		<input :data-element-id="counter" :name="nameAttr(counter,'width')" type="text" class="form-control row-width" v-model="this.width">
+			    		<input :data-element-id="elementId()" :name="nameAttr(elementId(),'width')" type="text" class="form-control row-width" v-model="this.width">
 					<div class="hidden">
 						
 					</div>
 				</div>
 			      </div>
 			      <div class="modal-footer">
-				<button :data-element-id="counter" type="button" class="btn btn-default rowEditModal" data-dismiss="modal">Done</button>
+				<button :data-element-id="elementId()" type="button" class="btn btn-default rowEditModal" data-dismiss="modal">Done</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>			
+			
+			<!-- Add Column Modal -->
+			<div class="modal fade" :id="modalAddColAttr(elementId(),  true)" tabindex="-1" role="dialog" :aria-labelledby="modalAddColAttr(elementId(), true)">
+			 <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="">Add Column</h4>
+			      </div>
+			      <div class="modal-body">
+				<div class="form-group">
+			    		<label for="">Height:</label>
+			    		<input  :data-element-id="elementId()" type="text" class="form-control row-height" v-model="this.height">
+			    		<label for="">Width:</label>
+			    		<input :data-element-id="elementId()" type="text" class="form-control row-width" v-model="this.width">
+					<div class="hidden">
+						
+					</div>
+				</div>
+			      </div>
+			      <div class="modal-footer">
+				<button :data-element-id="elementId()" type="button" class="btn btn-default rowEditModal" data-dismiss="modal">Done</button>
 			      </div>
 			    </div>
 			  </div>
 			</div>
-		    </div>
+		</div>
 
 
 	</template-row>
@@ -107,7 +138,7 @@
 		$('#page-template').on('change','.row-height', function(){
 			id = $(this).attr('data-element-id');
 			value = $(this).val();
-			$(this).closest('.row.new-element').css('height', value+'px');
+			$(this).closest('.row.new-element').css('height', value+'%');
 		});
 		$('#page-template').on('change','.row-width', function(){
 			id = $(this).attr('data-element-id');
@@ -119,12 +150,16 @@
 	const rows = new Vuex.Store({
 	  state: {
 	    count: 0,
-	    rowIds: 0
+	    rowIds: {{ $next_id }}
 	  },
 	  mutations: {
-	    increment (state) {
+	    increment_count (state) {
 	      state.count++
-	    }
+	    },	    
+		increment_id (state) {
+	      state.rowIds++
+	    },
+		
 	  }
 	})
 
@@ -132,21 +167,23 @@
 	  el: '#page-template',
 	  methods: {
 	  	addRow: function() {
-		rows.commit('increment')
-	    	}
+			rows.commit('increment_count')
+			rows.commit('increment_id')
+		}
 	  }
 	})
 
 
 	Vue.component('template-row', {
-	  props: ['rownum'],
+	  props: ['rownum','rowid'],
 	  data: function () {
 	    	return {
 			counter: this.rownum,
+			element_id: this.rowid,
 			names: ['height','width'],
 			height: 100,
 			width: 100,
-			style: {width: '100%',height: '100px'}
+			style: {width: '100%',height: '100%'}
 	    	}
 	  },
           methods: {
@@ -163,14 +200,23 @@
 			}else{  return this.width  }
 				
 		},
-		modalAttr: function(id, isID)
+		modalRowAttr: function(id, isID)
 		{
 			if(isID){return id+"_rowEditModal" }else{ return "#"+id+"_rowEditModal" }
+			
+		},		
+		modalAddColAttr: function(id, isID)
+		{
+			if(isID){return id+"_addColModal" }else{ return "#"+id+"_addColModal" }
 			
 		},
 		rowStyle: function()
 		{
-			return "height:"+this.height+"px; width:"+this.width+"%;"
+			return "height:"+this.height+"%; width:"+this.width+"%;"
+		},
+		elementId: function()
+		{
+			return this.element_id
 		}
 	  }
 

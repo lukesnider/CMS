@@ -2,9 +2,10 @@
 namespace App\Services;
 
 use App\Models\Page;
-use App\Models\PagesElements;
+use App\Models\PagesElement;
 use App\Models\PagesElementsMeta;
 use App\Models\Configuration;
+use Illuminate\Support\Facades\DB;
 
 class AdminService {
 
@@ -24,10 +25,12 @@ class AdminService {
 	{
 		$page	=	Page::find($id);
 		
-		
-		
+		$id = DB::table('pages_elements_id')->first()->current_id;
+		$nextId = $id + 1;
+				
 		return [
-			'page'	=>	$page,
+			'page'		=>	$page,
+			'next_id'	=>	$nextId,
 		];
 	}	
 	
