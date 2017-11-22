@@ -77,7 +77,9 @@
 			    		<label for="">Height:</label>
 			    		<input  :data-element-id="elementId()" :name="nameAttr(elementId(),'height')" type="text" class="form-control row-height" v-model="this.height">
 			    		<label for="">Width:</label>
-			    		<input :data-element-id="elementId()" :name="nameAttr(elementId(),'width')" type="text" class="form-control row-width" v-model="this.width">
+			    		<input :data-element-id="elementId()" :name="nameAttr(elementId(),'width')" type="text" class="form-control row-width" v-model="this.width">			    		
+						<label for="">Background:</label>
+			    		<input :data-element-id="elementId()" :name="nameAttr(elementId(),'background')" type="text" class="form-control row-background" v-model="this.background">
 					<div class="hidden">
 						
 					</div>
@@ -135,15 +137,20 @@
 @push('scripts-admin')
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#page-template').on('change','.row-height', function(){
+		$('#page-template').on('keyup','.row-height', function(){
 			id = $(this).attr('data-element-id');
 			value = $(this).val();
 			$(this).closest('.row.new-element').css('height', value+'%');
 		});
-		$('#page-template').on('change','.row-width', function(){
+		$('#page-template').on('keyup','.row-width', function(){
 			id = $(this).attr('data-element-id');
 			value = $(this).val();
 			$(this).closest('.row.new-element').css('width', value+'%');
+		});		
+		$('#page-template').on('keyup','.row-background', function(){
+			id = $(this).attr('data-element-id');
+			value = $(this).val();
+			$(this).closest('.row.new-element').css('background', value);
 		});
 	});
 
@@ -183,6 +190,7 @@
 			names: ['height','width'],
 			height: 100,
 			width: 100,
+			background: 'white',
 			style: {width: '100%',height: '100%'}
 	    	}
 	  },
@@ -192,13 +200,6 @@
 		},
 		classAttr: function(value) {
 			return "element-"+value;	
-		},
-		valueAttr: function(type) {
-			if(type == "height")
-			{
-			    return this.height
-			}else{  return this.width  }
-				
 		},
 		modalRowAttr: function(id, isID)
 		{
