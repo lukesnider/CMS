@@ -51,9 +51,20 @@ class AdminController extends Controller
 
 	public function pageEdit(Request $request)
 	{
-		$data = $this->adminService->pageEdit($request);
+		//$data = $this->adminService->pageEdit($request);
+
+
+		$formData = $request->all();
+		//foreach($formData['rows'] AS $row)
+		//{
+		//	print_r($row['height']);die;			
+		//}
+		//dd($formData['rows']);
+		return response()->json($formData);
 		
-		return redirect()->route('admin.pages')->with($data);
+
+
+		//return redirect()->route('admin.pages')->with($data);
 	}
 	
 	

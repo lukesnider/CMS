@@ -1,27 +1,22 @@
 @extends('layouts.admin.layout')
 
 @section('content')
-<style>
-.grid-item { width: 25%; }
-.grid-item--width2 { width: 50%; }
-</style>
-<form action="{{ route('admin.page.edit') }}" method="POST">
+
+<!--<form action="{{ route('admin.page.edit') }}" method="POST">-->
 {{ csrf_field() }}
 <div id="page-template" class="container">
 
 
-		@foreach($page->elements->where('type',1)->sortBy('position') AS $row)
+		@foreach($page->elements->where('parent_id',0)->sortBy('position') AS $row)
 		<div id="{{ $row->id }}" class="row" 
-			style="height:{{$row->y_size}}px; @if($row->metaData)  background-color:{{ $row->metaData->background_color }}; color:{{ $row->metaData->color }}; @endif ">
+			style=" @if($row->metaData)  background-color:{{ $row->metaData->background_color }}; color:{{ $row->metaData->color }}; @endif ">
 
-			@if($row->metaData)
-				{{ $row->metaData->content }}
-			@endif	
-		
 			@foreach($page->elements->where('type', 2)->where('parent_id', $row->id)->sortBy('position') AS $col)
 				<div id="{{ $col->id }}" class="col-md-{{ $col->x_size }}"  @if($col->metaData) style="background-color:{{ $col->metaData->background_color }};color:{{ $col->metaData->color }};height:{{$col->y_size}}%;border:{{ $col->metaData->border }}" @endif>
-					@if($col->metaData)
-						{{ $col->metaData->content }}
+					@if($col->content($col->id))
+						@foreach($col->content($col->id) AS $content)
+							{!! $content->metaData->content !!}						
+						@endforeach
 					@endif
 				</div>
 		
@@ -128,11 +123,11 @@
 		</div>
 	</div>
 	<div class="row">
-		<button type="submit" class="btn btn-default">Save</button>
+		<button  v-on:click="postData()" id="save_page_state" type="button" class="btn btn-default">Save</button>
 	</div>
 
 </div>
-</form>
+<!--</form>-->
 
 @push('scripts-admin')
 <script type="text/javascript">
@@ -157,7 +152,19 @@
 	const rows = new Vuex.Store({
 	  state: {
 	    count: 0,
-	    rowIds: {{ $next_id }}
+	    rowIds: {{ $next_id }},
+	    postData: {rows: 
+				[
+					{id: 7, height: 100, width: 100 },
+					{id: 8, height: 300, width: 200 }
+		
+				],
+			columns: 
+				[
+					{id: 10, height: 300, width: 300},
+					{id: 11, height: 400, width: 400}			
+				]
+			}
 	  },
 	  mutations: {
 	    increment_count (state) {
@@ -167,6 +174,11 @@
 	      state.rowIds++
 	    },
 		
+	  },
+	  getters: {
+	    allPostData: state => {
+	      return state.postData
+	    }
 	  }
 	})
 
@@ -176,6 +188,17 @@
 	  	addRow: function() {
 			rows.commit('increment_count')
 			rows.commit('increment_id')
+		},
+		postData: function() {
+			axios({
+			  headers: {'X-CSRF-TOKEN': '{{csrf_token()}}'  },
+			  method: 'POST',
+			  url: '/admin/page/edit',
+			  data: rows.getters.allPostData
+			}).then(function(response) {
+			  console.log(response)
+			});
+			
 		}
 	  }
 	})

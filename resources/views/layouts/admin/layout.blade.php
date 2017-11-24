@@ -91,7 +91,8 @@
 	<script src="https://unpkg.com/vuex"></script>
 	<script src="https://unpkg.com/draggabilly@2/dist/draggabilly.pkgd.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.12.17/grapes.min.js"></script>
-	
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 
 
 

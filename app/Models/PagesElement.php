@@ -17,4 +17,10 @@ class PagesElement extends Model
     {
         return $this->hasOne('App\Models\PagesElementsMeta', 'element_id');
     }    
+
+
+    public function content($id)
+    {
+	return $this->where('type', 3)->where('parent_id', $id)->get();
+    }	
 }
