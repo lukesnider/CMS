@@ -11,91 +11,36 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     	<!-- Styles -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet">   
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.12.17/css/grapes.min.css" rel="stylesheet">
-</head>
+		
+		<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> 
+	
+	</head>
 <body>		
-	<div class="container-fluid">
-		
-		<!-- Second navbar for profile settings -->
-		<nav class="navbar navbar-inverse">
-		  <div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-4">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			  </button>
-			  <a class="navbar-brand" href="{{ route('admin.index') }}">CMS</a>
-			</div>
-		
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="navbar-collapse-4">
-			  <ul class="nav navbar-nav navbar-right">
-				<li><a href="{{ route('pages.index') }}">View Frontend</a></li>
-				<li><a href="{{ route('admin.pages') }}">Pages</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-						{{ Auth::user()->name }} <span class="caret"></span>
-					</a>
 
-					<ul class="dropdown-menu">
-						<li>
-							<a href="{{ route('logout') }}"
-								onclick="event.preventDefault();
-										 document.getElementById('logout-form').submit();">
-								Logout
-							</a>
+	@include('admin.nav')
 
-							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-								{{ csrf_field() }}
-							</form>
-						</li>
-					</ul>
-				</li>
-			  </ul>
-			</div><!-- /.navbar-collapse -->
-		  </div><!-- /.container -->
-		</nav><!-- /.navbar -->
-		<!--<ol class="breadcrumb">
-		  <li><a href="{{ route('admin.index') }}">Home</a></li>
-		</ol>-->
-	</div><!-- /.container-fluid -->
-			
 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		
+
 	<div id="app">
-		
-        @yield('content')
+
+		@yield('content')
 	</div>
+
+
 	
-	
-	
-    <!-- Scripts -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="https://unpkg.com/vuex"></script>
-	<script src="https://unpkg.com/draggabilly@2/dist/draggabilly.pkgd.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.12.17/grapes.min.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		
+			<!-- Scripts -->
+		<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+		<script src="{{ asset('js/popper.js') }}"></script>
+		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script src="https://unpkg.com/vuex"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		
 
 
 
-
-	@stack('scripts-admin')
-</body>
+		@stack('scripts-admin')
+	</body>
 </html>

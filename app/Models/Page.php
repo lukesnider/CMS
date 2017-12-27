@@ -25,4 +25,10 @@ class Page extends Model
 		
 		return false;
 	}
+
+	public function status()
+	{
+		return $this->hasOne('App\Models\PageStatus', 'id', 'status');
+
+	}
 }
