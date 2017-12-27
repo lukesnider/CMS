@@ -4,8 +4,9 @@
 
 <!--<form action="{{ route('admin.page.edit') }}" method="POST">-->
 {{ csrf_field() }}
-<div id="page-template" class="container">
-
+<div id="page-template" class="container">		
+		
+		
 		@foreach($page->elements->where('parent_id',0)->sortBy('position') AS $row)
 		<div id="{{ $row->id }}" class="row" 
 			style=" @if($row->metaData)  background-color:{{ $row->metaData->background_color }}; color:{{ $row->metaData->color }}; @endif ">
@@ -47,29 +48,6 @@
 <!--</form>-->
 
 @push('scripts-admin')
-<script type="text/javascript">
-
-	$(document).ready(function(){
-
-			$("#page-template").on('keydown', 'textarea', function(e) {
-			if(e.keyCode === 9) {
-					var start = this.selectionStart;
-					var end = this.selectionEnd;
-
-					var $this = $(this);
-					var value = $this.val();
-
-					$this.val(value.substring(0, start)
-											+ "\t"
-											+ value.substring(end));
-
-					this.selectionStart = this.selectionEnd = start + 1;
-					e.preventDefault();
-			}
-		});
-	});
-
-
-</script>
+<script src="{{ asset('js/admin/page.js') }}"></script>
 @endpush
 @endsection

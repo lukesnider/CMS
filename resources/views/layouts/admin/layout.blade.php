@@ -13,7 +13,9 @@
     	<!-- Styles -->
 		
 		<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> 
-	
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.css">
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/theme/monokai.css">
+		<link href="{{ asset('css/summernote.css') }}" rel="stylesheet"> 
 	</head>
 <body>		
 
@@ -38,7 +40,10 @@
 		<script src="https://unpkg.com/vuex"></script>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 		
-
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
+		<script src="{{ asset('js/summernote.min.js') }}"></script>
 
 
 		@stack('scripts-admin')
