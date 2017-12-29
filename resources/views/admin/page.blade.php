@@ -4,10 +4,11 @@
 
 <!--<form action="{{ route('admin.page.edit') }}" method="POST">-->
 {{ csrf_field() }}
-<div id="page-template" class="container">
-
+<div id="page-template" class="container">		
+		
+		
 		@foreach($page->elements->where('parent_id',0)->sortBy('position') AS $row)
-		<div id="{{ $row->id }}" class="row" 
+		<div id="{{ $row->id }}" class="row"
 			style=" @if($row->metaData)  background-color:{{ $row->metaData->background_color }}; color:{{ $row->metaData->color }}; @endif ">
 
 			@foreach($page->elements->where('type', 2)->where('parent_id', $row->id)->sortBy('position') AS $col)
@@ -33,43 +34,38 @@
 		</div>
 
 		@endforeach
+</div>
+<div id="" class="container">		
 
 	<div class="row">
 		<div class="col-md-2 offset-md-5">
-			<button type="button" class="btn btn-default add_row_button">Add Row</button>
+			<!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#addColumnModal">+</button>-->
+			<button type="button" class="btn btn-default" id="addRowButton">Add Row</button>
 		</div>
 	</div>
 	<div class="row">
 		<button id="save_page_state" type="button" class="btn btn-default">Save</button>
 	</div>
-
+	
+	
+	
+	<div id="hidden_fields" class="hidden">
+		
+	</div>
+	
+	
+	
 </div>
 <!--</form>-->
 
+@include('modals.edit_column')
+
+
 @push('scripts-admin')
-<script type="text/javascript">
-
-	$(document).ready(function(){
-
-			$("#page-template").on('keydown', 'textarea', function(e) {
-			if(e.keyCode === 9) {
-					var start = this.selectionStart;
-					var end = this.selectionEnd;
-
-					var $this = $(this);
-					var value = $this.val();
-
-					$this.val(value.substring(0, start)
-											+ "\t"
-											+ value.substring(end));
-
-					this.selectionStart = this.selectionEnd = start + 1;
-					e.preventDefault();
-			}
-		});
-	});
-
+<script>
+var row_count = 0;
 
 </script>
+<script src="{{ asset('js/admin/page.js') }}"></script>
 @endpush
 @endsection
