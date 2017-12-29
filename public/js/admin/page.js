@@ -1,24 +1,11 @@
+var row_count = 0;
 
 $(document).ready(function(){
 	
-	
-	
-	//CodeMirror.fromTextArea($('#addRowEditor').get(0), {
-	//	lineNumbers: true,
-	//	theme: "monokai"
-	//});
-	//var editor_count = 0;
-	
-	//$('.add_row_button').on('click', function(){
-	//	editor_count++;
-	//	$('#page-template').append('<textarea id="editor_'+editor_count+'"></textarea>');
-	//	CodeMirror.fromTextArea($('#editor_'+editor_count).get(0), {
-	//		lineNumbers: true,
-	//		theme: "monokai"
-	//	});		
-	//});
-	
-	
+	$('.build_row').each(function(){
+		row_count++;
+	});
+	console.log(row_count);
 	$('#addRowButton').on('click',function(){
 		$('#page-template').append(getRow());
 	});
@@ -68,22 +55,6 @@ $(document).ready(function(){
 	  }
 	});
 	
-	
-	//$("#page-template").on('keydown', 'textarea', function(e) {
-	//if(e.keyCode === 9) {
-	//		var start = this.selectionStart;
-	//		var end = this.selectionEnd;
-	//
-	//		var $this = $(this);
-	//		var value = $this.val();
-	//
-	//		$this.val(value.substring(0, start)
-	//								+ "\t"
-	//								+ value.substring(end));
-	//
-	//		this.selectionStart = this.selectionEnd = start + 1;
-	//		e.preventDefault();
-	//}
 });
 
 var getColumn = function(row_no, column_no)

@@ -37,7 +37,7 @@ class PageService {
 								->first();
 			}
 		}
-		
+
 		return $page;
 
 		
