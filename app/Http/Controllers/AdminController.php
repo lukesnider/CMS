@@ -53,7 +53,7 @@ class AdminController extends Controller
 	{
 		//$data = $this->adminService->pageEdit($request);
 
-
+        dd($request);
 		$formData = $request->all();
 		//foreach($formData['rows'] AS $row)
 		//{

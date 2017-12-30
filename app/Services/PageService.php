@@ -29,11 +29,11 @@ class PageService {
 		if(!$page || $page->status == 0)
 		{
 			$page = Page::where('slug', '/')
-							->where('status', 1)
+							->where('status', 2)
 							->first();
 			if(!$page)
 			{
-				$page = Page::where('status', 1)
+				$page = Page::where('status', 2)
 								->first();
 			}
 		}
