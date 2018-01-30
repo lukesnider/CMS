@@ -7,18 +7,15 @@
 <div id="page-template" class="container">		
 		
 		
-		@foreach($page->elements->where('parent_id',0)->sortBy('position') AS $row)
-		<div id="{{ $row->id }}" class="row build_row"
-			style=" @if($row->metaData)  background-color:{{ $row->metaData->background_color }}; color:{{ $row->metaData->color }}; @endif ">
+		@foreach($page->elements->where('type',1)->sortBy('position') AS $row)
+		<div id="{{ $row->id }}" class="row build_row">
 			<button type="button" class="btn btn-primary build_row-add-column" style="display:none;">+</button>
 
 			@foreach($page->elements->where('type', 2)->where('parent_id', $row->id)->sortBy('position') AS $col)
-				<div id="{{ $col->id }}" class="col-md-{{ $col->x_size }} build_col"  @if($col->metaData) style="background-color:{{ $col->metaData->background_color }};color:{{ $col->metaData->color }};height:{{$col->y_size}}%;border:{{ $col->metaData->border }}" @endif>
+				<div id="{{ $col->id }}" class="col-md-{{ $col->x_size }} build_col">
 				<button type="button" class="btn btn-default build_col-edit" data-toggle="modal" data-target="#editColumnModal" style="display:none;">Edit</button>
 				
-					@if($col->metaData)
-						{!! $col->metaData->content !!}						
-					@endif
+						{!! $col->content !!}						
 				</div>
 				<!--<div id="column_{{ $col->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="column_{{ $col->id }}" aria-hidden="true">
 					<div class="modal-dialog modal-lg">
