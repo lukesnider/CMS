@@ -15,6 +15,7 @@ class CreateElementsTypeTable extends Migration
     {
         Schema::create('elements_type', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('type');
             $table->timestamps();
         });
     }

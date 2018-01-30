@@ -15,12 +15,9 @@ class CreatePagesElementsMetaTable extends Migration
     {
         Schema::create('pages_elements_meta', function (Blueprint $table) {
             $table->increments('id');
-		$table->integer('element_id');
-		$table->string('background_color');
-		$table->string('color');
-		$table->string('border');
-		$table->string('border_color');
-		$table->text('content');
+            $table->integer('element_id');
+            $table->text('key');
+            $table->text('value');
             $table->timestamps();
         });
     }

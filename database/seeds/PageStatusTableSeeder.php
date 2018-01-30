@@ -3,9 +3,9 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class PagesElementsTypeTableSeeder extends Seeder
+class PageStatusTableSeeder extends Seeder
 {
-	protected $types = ['Row', 'Column'];
+	protected $statuses = ['Draft','Live','Disabled'];
 	
     /**
      * Run the database seeds.
@@ -15,10 +15,10 @@ class PagesElementsTypeTableSeeder extends Seeder
     public function run()
     {
 		
-		foreach($this->types AS $type)
+		foreach($this->statuses AS $status)
 		{
-			DB::table('elements_type')->insert([
-				'type' => $type,
+			DB::table('page_status')->insert([
+				'status' => $status,
 			]);
 		}
 		

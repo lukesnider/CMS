@@ -27,6 +27,6 @@ class CreatePagesElementsIdTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('PagesElementsId');
+        Schema::dropIfExists('pages_elements_id');
     }
 }

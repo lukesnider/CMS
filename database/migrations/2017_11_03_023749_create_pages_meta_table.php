@@ -15,6 +15,8 @@ class CreatePagesMetaTable extends Migration
     {
         Schema::create('pages_meta', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('key');
+            $table->text('value');
             $table->timestamps();
         });
     }

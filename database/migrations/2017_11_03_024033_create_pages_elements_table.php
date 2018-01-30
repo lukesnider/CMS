@@ -14,14 +14,13 @@ class CreatePagesElementsTable extends Migration
     public function up()
     {
         Schema::create('pages_elements', function (Blueprint $table) {
-            		$table->increments('id');
-			$table->integer('page_id');
-			$table->integer('parent_id');
-			$table->integer('type');
-			$table->integer('x_size');
-			$table->integer('y_size');
-			$table->integer('position');
-           	 	$table->timestamps();
+            $table->increments('id');
+			$table->integer('page_id')->nullable();
+			$table->integer('parent_id')->nullable();
+			$table->integer('type')->nullable();
+            $table->integer('position')->nullable();
+            $table->text('content')->nullable();
+           	$table->timestamps();
         });
     }
 
