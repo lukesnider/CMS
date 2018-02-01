@@ -58,6 +58,25 @@ $(document).ready(function(){
 		 }
 	});
 	
+	$('#page-template').on('click','.build_col-edit',function(){
+		
+		col_id = $(this).attr('data-col-id');
+
+		$('#editColumnEditorId').val(col_id);
+		$('#editColumnEditor').summernote("code", $('#build_col-content-'+col_id).html());
+	});
+	
+
+	$('#editColumnModal').on('hide.bs.modal',function(){
+
+		col_id = $('#editColumnEditorId').val();
+		$('#editColumnEditorId').val("");
+		
+		$('.build_col-content-'+col_id).html("");
+		$('#build_col-content-'+col_id).html($('#editColumnEditor').val());
+		$('#editColumnEditor').summernote("code", " ");
+	});
+	
 	
 	
 	$('.summernote').summernote({
@@ -90,8 +109,10 @@ var getColumn = function(row_no, column_no)
 {
 	html = 	
 		'<div class="col build_col build_row_'+row_no+' build_col_'+column_no+'">'+
-			'<button type="button" class="btn btn-default build_col-edit" data-toggle="modal" data-target="#editColumnModal" style="display:none;">Edit</button>'+
-			'<p>Column</p>'+
+			'<button data-col-id="'+column_no+'" type="button" class="btn btn-default build_col-edit" data-toggle="modal" data-target="#editColumnModal" style="display:none;">Edit</button>'+
+			'<div id="build_col-content-'+column_no+'">'+
+				'<p>Column</p>'+
+			'</div>'+
 		'</div>';
 		
 	return html;

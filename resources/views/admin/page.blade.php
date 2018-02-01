@@ -13,9 +13,10 @@
 
 			@foreach($page->elements->where('type', 2)->where('parent_id', $row->id)->sortBy('position') AS $col)
 				<div id="{{ $col->id }}" class="col-md-{{ $col->x_size }} build_col">
-				<button type="button" class="btn btn-default build_col-edit" data-toggle="modal" data-target="#editColumnModal" style="display:none;">Edit</button>
-				
-						{!! $col->content !!}						
+				<button data-col-id="{{$col->id}}" type="button" class="btn btn-default build_col-edit" data-toggle="modal" data-target="#editColumnModal" style="display:none;">Edit</button>
+					<div id="build_col-content-{{$col->id}}">
+						{!! $col->content !!}		
+					</div>
 				</div>
 				<!--<div id="column_{{ $col->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="column_{{ $col->id }}" aria-hidden="true">
 					<div class="modal-dialog modal-lg">

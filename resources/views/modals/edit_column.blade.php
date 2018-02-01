@@ -12,13 +12,12 @@
           <!--<div class="form-group">
             <label for="recipient-name" class="col-form-label">Recipient:</label>
             <input type="text" class="form-control" id="recipient-name">
-          </div>-->
+          </div>-->		  <input type="hidden" class="hidden" id="editColumnEditorId" value="" />
           <div class="form-group">
             <label for="message-text" class="col-form-label">Content:</label>
             <textarea id="editColumnEditor" class="form-control summernote"></textarea>
           </div>
         </form>
-      </div>
-    </div>
+      </div>      <div class="modal-footer">	  <button id="editColumnEditorSave" type="button" class="btn btn-light" data-dismiss="modal">Save</button>      </div>    </div>
   </div>
 </div>
