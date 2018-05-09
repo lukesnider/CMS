@@ -13,8 +13,14 @@
 
 
 Route::prefix('admin')->group(function () {
-	//Auth::routes();
+	Route::middleware('auth')->group(function () {
+		Route::get('/', 'AdminController@index')->name('admin.index');
+		Route::get('/pages', 'AdminController@pages')->name('admin.pages');
+		Route::get('/pages/{id}', 'AdminController@page')->name('admin.page');
+		Route::post('/pages/edit', 'AdminController@pagesEdit')->name('admin.pages.edit');
+		Route::post('/page/edit', 'AdminController@pageEdit')->name('admin.page.edit');
 
+	});
 	// Authentication Routes...
 	Route::get('login', [
 	  'as' => 'login',

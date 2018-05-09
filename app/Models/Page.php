@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Configuration;
 
 class Page extends Model
 {
@@ -12,4 +13,22 @@ class Page extends Model
     {
         return $this->hasMany('App\Models\PagesElement', 'page_id');
     }
+	
+	public function isIndex()
+	{
+		$index = Configuration::where('config','index_page')->first();
+		
+		if($index->value == $this->id)
+		{
+			return true;
+		}
+		
+		return false;
+	}
+
+	public function status()
+	{
+		return $this->hasOne('App\Models\PageStatus', 'id', 'status');
+
+	}
 }

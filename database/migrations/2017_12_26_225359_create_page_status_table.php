@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateElementsTypeTable extends Migration
+class CreatePageStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateElementsTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('elements_type', function (Blueprint $table) {
+        Schema::create('page_status', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateElementsTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('elements_type');
+        Schema::dropIfExists('page_status');
     }
 }

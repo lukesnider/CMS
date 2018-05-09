@@ -11,10 +11,36 @@ class PageService {
 		
 		$slug = '/' .$page;
 		
-		$page = Page::where('slug', $slug)->first();
-
+		$page = Page::where('slug', $slug)
+						->where('status', 1)
+						->first();
+		
+		
 		return $page;
 	}
+	
+	
+	public function  getIndexPage()
+	{
+		$index = Configuration::getIndex();
+		
+		$page	=	Page::find($index);
+		
+		if(!$page || $page->status == 0)
+		{
+			$page = Page::where('slug', '/')
+							->where('status', 2)
+							->first();
+			if(!$page)
+			{
+				$page = Page::where('status', 2)
+								->first();
+			}
+		}
 
+		return $page;
+
+		
+	}
 
 }

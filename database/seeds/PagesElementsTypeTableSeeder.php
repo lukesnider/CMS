@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PagesElementsTypeTableSeeder extends Seeder
 {
-	protected $types = ['Row', 'Column', 'Content'];
+	protected $types = ['Row', 'Column'];
 	
     /**
      * Run the database seeds.
