@@ -19,6 +19,9 @@ class CreatePagesElementsTable extends Migration
 			$table->integer('parent_id')->nullable();
 			$table->integer('type')->nullable();
             $table->integer('position')->nullable();
+		            $table->integer('x_size')->nullable();
+            $table->integer('y_size')->nullable();
+
             $table->text('content')->nullable();
            	$table->timestamps();
         });
