@@ -32,7 +32,6 @@ class PagesTableSeeder extends Seeder
 		{
 			DB::table('pages')->insert([
 				'id' 		    => $id,
-                'index' 		=> $page['index'],
 				'slug' 		    => $page['slug'],
 				'title' 		=> $page['title'],
 				'status' 		=> $page['status'],                
