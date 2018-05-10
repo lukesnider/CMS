@@ -8,7 +8,7 @@ class UsersTableSeeder extends Seeder
         1 => [
             'name'      =>  'Luke Snider',
             'email'     =>  'luke946@gmail.com',
-            'password'  =>  '$2y$10$zYSZCg/mAjBEjaOiDOk54OFazSQBUY9GjMIpqGNqdU8oBerBjaMzi',
+            'password'  =>  '$2y$10$v7zNyEa4gFGeql.RcKWq6O.rtAue7iTPkvkZS8aVm5xZSQ12tUa2i',
         ],
 
     ];
