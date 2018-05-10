@@ -15,11 +15,9 @@ class CreatePagesElementsTable extends Migration
     {
         Schema::create('pages_elements', function (Blueprint $table) {
             $table->increments('id');
-			$table->integer('page_id');
+			$table->integer('page_id')->nullable();
 			$table->integer('parent_id')->nullable();
 			$table->integer('type')->nullable();
-			$table->integer('x_size')->nullable();
-			$table->integer('y_size')->nullable();
             $table->integer('position')->nullable();
             $table->text('content')->nullable();
            	$table->timestamps();

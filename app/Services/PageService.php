@@ -12,7 +12,7 @@ class PageService {
 		$slug = '/' .$page;
 		
 		$page = Page::where('slug', $slug)
-						->where('status', 1)
+						->where('status', 2)
 						->first();
 		
 		

@@ -98,9 +98,17 @@ $(document).ready(function(){
 var getColumn = function(row_no, column_no)
 {
 	html = 	
+<<<<<<< HEAD
+		'<div class="col build_col build_row_'+row_no+' build_col_'+column_no+'">'+
+			'<button data-col-id="'+column_no+'" type="button" class="btn btn-default build_col-edit" data-toggle="modal" data-target="#editColumnModal" style="display:none;">Edit</button>'+
+			'<div id="build_col-content-'+column_no+'">'+
+				'<p>Column</p>'+
+			'</div>'+
+=======
 		'<div class="col-'+width+' build_col build_row_'+row_no+' build_col_'+column_no+'">'+
 			'<button type="button" class="btn btn-default build_col-edit"  data-column-id="'+row_no+'" data-toggle="modal" data-target="#editColumnModal" style="display:none;">Edit</button>'+
 			'<p>Column</p>'+
+>>>>>>> master
 		'</div>';
 		
 	return html;

@@ -10,7 +10,6 @@ class PageStatusTableSeeder extends Seeder
         1 => ['status' => 'Draft'],
         2 => ['status' => 'Live'],
         3 => ['status' => 'Inactive'],
-        
     ];
 
     /**

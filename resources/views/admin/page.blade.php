@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div id="page-template" class="container">		
+<div id="page-template" class="container">
 
 	@foreach($page->elements->where('type',1)->sortBy('position') AS $key => $row)
 		<div class="row build_row" data-row-no="{{ $key }}">

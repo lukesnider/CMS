@@ -4,19 +4,23 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
 class PagesTableSeeder extends Seeder
-{
+{    
+	protected $pages = [
+        
+        1   =>   [
+            'slug'      =>  '/',
+            'title'     =>  'Index',
+            'status'    =>  2
 
-    protected $pages = [
-        1 => [
-            'index'     => 1,
-            'slug'      => '/',
-            'title'     => 'Index',
-            'status'    =>  1
         ],
-
+        2   =>   [
+            'slug'      =>  '/about',
+            'title'     =>  'About Page',
+            'status'    =>  1
+        ],       
+    
     ];
-
-
+	
     /**
      * Run the database seeds.
      *

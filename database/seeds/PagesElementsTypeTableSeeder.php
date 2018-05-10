@@ -17,7 +17,7 @@ class PagesElementsTypeTableSeeder extends Seeder
 		
 		foreach($this->types AS $type)
 		{
-			DB::table('pages_elements_type')->insert([
+			DB::table('elements_type')->insert([
 				'type' => $type,
 			]);
 		}

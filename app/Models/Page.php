@@ -7,7 +7,7 @@ use App\Models\Configuration;
 
 class Page extends Model
 {
-    protected $with = ['elements'];
+    //protected $with = ['elements'];
     
     public function elements()
     {

@@ -24,7 +24,8 @@ class AdminService {
 	public function page($id)
 	{
 		$page	=	Page::find($id);
-						
+		$id = DB::table('pages_elements_id')->first()->current_id;
+		$nextId = $id + 1;
 		return [
 			'page'		=>	$page,
 		];
