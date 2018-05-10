@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagesMetaTable extends Migration
+class CreatePagesElementsTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreatePagesMetaTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages_meta', function (Blueprint $table) {
+        Schema::create('pages_elements_type', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('key');
-            $table->text('value');
+	        $table->string('type');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreatePagesMetaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages_meta');
+        Schema::dropIfExists('pages_elements_type');
     }
 }

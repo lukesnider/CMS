@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class PagesElement extends Model
 {
      protected $table = 'pages_elements';
-	
-    public function metaData()
+    public function content($id)
     {
-        return $this->hasOne('App\Models\PagesElementsMeta', 'element_id');
-    }
+	    return $this->where('type', 3)->where('parent_id', $id)->get();
+    }	
 }

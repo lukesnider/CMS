@@ -28,16 +28,17 @@ class PagesTableSeeder extends Seeder
      */
     public function run()
     {
-		
-		foreach($this->pages AS $page)
+		foreach($this->pages AS $id	=> $page)
 		{
 			DB::table('pages')->insert([
-                'slug'      =>  $page['slug'],
-                'title'     =>  $page['title'],
-                'status'    =>  $page['status']
-        	]);
-		}
-		
-    
-	}
+				'id' 		    => $id,
+                'index' 		=> $page['index'],
+				'slug' 		    => $page['slug'],
+				'title' 		=> $page['title'],
+				'status' 		=> $page['status'],                
+				'created_at' 	=> date("Y-m-d H:i:s"),
+				'updated_at' 	=> date("Y-m-d H:i:s"),
+			]);
+        }
+   }
 }
